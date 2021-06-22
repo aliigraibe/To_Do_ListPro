@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { Head } from "./Styles";
+import TodayList from "./component/TodayList";
+import FutureList from "./component/FutureList";
+import { Switch, Route } from "react-router";
+import "./App.css";
+import CreateForm from "./component/CreateForm";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Head>
+      <Switch>
+
+      <Route
+            path={["/CreateForm/", "/:taskSlug/edit/"]}
+          >
+            <CreateForm />
+          </Route>
+
+        <Route exact path="/">
+        <TodayList /> <FutureList />
+        </Route>
+      </Switch>
+    </Head>
   );
 }
 

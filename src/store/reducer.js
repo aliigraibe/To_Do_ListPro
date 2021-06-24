@@ -2,6 +2,7 @@ import slugify from "slugify";
 import { ADD_TASK, DELETE_TASK, FETCH_TASK, UPDATE_TASK } from "./actions";
 const initialState = {
   tasks: [],
+  status: true,
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,12 +14,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         tasks: taskToKeep,
-      };   
-    
-      case FETCH_TASK:
+      };
+
+    case FETCH_TASK:
       return {
         ...state,
-       tasks: action.payload.tasks,
+        tasks: action.payload.tasks,
       };
     case ADD_TASK:
       const { newTask } = action.payload;
@@ -30,13 +31,13 @@ const reducer = (state = initialState, action) => {
       };
     case UPDATE_TASK:
       const { updateTasks } = action.payload;
-
       return {
         ...state,
         tasks: state.tasks.map((task) =>
-          task.id === updateTasks.id? updateTasks : task
+          task.id === updateTasks.id ? updateTasks : task
         ),
       };
+
     default:
       return state;
   }

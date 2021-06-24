@@ -16,7 +16,7 @@ const CreateForm = () => {
     findTask ?? {
       name: "",
       description: "",
-      priority: 0,
+      priority: "",
       status: "",
       deadLineDate: "",
     }
@@ -57,7 +57,7 @@ const CreateForm = () => {
             onChange={handleChange}
           />
         </div>
-        <div class="form-group">
+        {/* <div class="form-group">
           <label>priority</label>
           <input
             type="text"
@@ -67,7 +67,14 @@ const CreateForm = () => {
             value={task.priority}
             onChange={handleChange}
           />
-        </div>
+          </div> */}
+        <label for="cars">priority:</label>
+
+        <select onChange={handleChange} value={task.priority} name="priority" id="priority">
+          <option >high</option>
+          <option >medium</option>
+          <option>low</option>
+        </select>
         <div class="form-group">
           <label>status</label>
           <input
@@ -76,6 +83,18 @@ const CreateForm = () => {
             placeholder="add your status  "
             value={task.status}
             name="status"
+            onChange={handleChange}
+          />
+        </div>
+
+        <div class="form-group">
+          <label>deadLineDate</label>
+          <input
+            type="date"
+            class="form-control"
+            placeholder="add your status  "
+            value={task.deadLineDate}
+            name="deadLineDate"
             onChange={handleChange}
           />
         </div>

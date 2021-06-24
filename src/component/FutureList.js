@@ -1,23 +1,24 @@
 import ListItem from "./ListItem";
-import { Flxii, Row, Logo } from "../Styles";
+import { Flxii, Row } from "../Styles";
 import { useSelector } from "react-redux";
-import { Route } from "react-router";
 
 const FutureList = (props) => {
   const tasks = useSelector((state) => state.tasks);
-
+  const today = new Date();
   const futureList = tasks
-    .filter((task) => task.deadLineDate )
+    .filter((task) => {
+      return new Date(task.deadLineDate) > today;
+    })
+    .filter((task) => task.status === false)
     .map((task) => <ListItem task={task} key={task.id} />);
-
   return (
-    <Flxii>
-      <Route exact path="/">
-        {" "}
-      </Route>
+    <>
+      <h1> Future:</h1>
 
-      <Row>{futureList}</Row>
-    </Flxii>
+      <Flxii>
+        <Row>{futureList}</Row>
+      </Flxii>
+    </>
   );
 };
 export default FutureList;

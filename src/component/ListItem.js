@@ -1,20 +1,32 @@
-import { Flxii ,Logo} from "../Styles";
+import {  Logo } from "../Styles";
 import Deletetask from "./DeleteProduct";
-// import { Link } from "react-router-dom";
+import Mark from "./Mark";
 const ListItem = (props) => {
   const task = props.task;
+  let disable = false;
+  if (new Date(task.deadLineDate) < new Date()) disable = true;
   return (
-    <Flxii>
-    
-
-      <p>{task.name}</p>
-      <p>{task.status}</p>
-      <p>{task.description}</p>
-      <p>{task.priority}</p>
-      <p>{task.deadLineDate}</p>
-      <Deletetask deletetask={props.deletetask} taskId={task.id} />
-      <Logo to={`/${task.slug}/edit`}>edit</Logo>{" "}
-    </Flxii>
+    <>
+      <div>
+        <div class="card" style={{ width: "20rem" }}>
+          <div class="card-body">
+            <h5 class="card-title">Name: {task.name}</h5>
+            <p class="card-text">Status: {task.status}</p>{" "}
+            <p class="card-text">priority: {task.priority}</p>{" "}
+            <p class="card-text">description: {task.description}</p>{" "}
+            <p class="card-text">dead Line Date: {task.deadLineDate}</p>
+            <p class="card-text">time: {task.deadLineDate.length}</p>
+            {!disable ? (
+              <Deletetask deletetask={props.deletetask} taskId={task.id} />
+            ) : (
+              ""
+            )}
+            {!disable ? <Mark updatetask={task} /> : ""}
+            {!disable ? <Logo to={`/${task.slug}/edit`}>edit</Logo> : ""}
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 

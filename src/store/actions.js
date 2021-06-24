@@ -31,7 +31,7 @@ export const fetchTask = () => {
 };
 export const addTask = (newTask) => {
   return async (dispatch) => {
-
+console.log(newTask)
 
     try {
    const res = await axios.post(`http://localhost:8080/tasks/`,newTask);
